@@ -24,6 +24,9 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Password can't be blank"
     end
     it "passwordとpassword_confirmationが不一致では登録できない" do
+      @user.password_confirmation = Faker::Internet.password(min_length: 6)
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
     it "nicknameが7文字以上では登録できない" do
     end
