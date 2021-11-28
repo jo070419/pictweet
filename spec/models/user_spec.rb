@@ -34,6 +34,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Nickname is too long (maximum is 6 characters)"
     end
     it "重複したemailが存在する場合登録できない" do
+      @user.email = "ela@hotmail.com"
+      @user.save
+      user2 = FactoryBot.build(:user)
+      user2.email = "ela@hotmail.com"
+      user2.valid?
+      expect(user2.errors.full_messages).to include "Email has already been taken"
     end
     it "passwordが5文字以下では登録できない" do
     end
