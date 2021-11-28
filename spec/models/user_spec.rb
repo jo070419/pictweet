@@ -41,6 +41,10 @@ RSpec.describe User, type: :model do
       expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
     it "passwordが5文字以下では登録できない" do
+      @user.password = Faker::Internet.password(min_length: 0, max_length: 5)
+      @user.password_confirmation = @user.password
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
     end
   end
 end
