@@ -22,6 +22,9 @@ RSpec.describe Tweet, type: :model do
         expect(@tweet.errors.full_messages).to include "Text can't be blank"
       end
       it "ユーザーが紐付いてなければ投稿できない" do
+        @tweet.user = nil
+        @tweet.valid?
+        expect(@tweet.errors.full_messages).to include "User must exist"
       end
     end
   end
