@@ -23,4 +23,7 @@ describe TweetsController, type: :request do
       expect(response.body).to include("投稿を検索する")
     end
   end
+
+  describe "GET #show" do
+  end
 end
