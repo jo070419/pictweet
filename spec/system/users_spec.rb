@@ -55,8 +55,8 @@ RSpec.describe "ユーザー新規登録", type: :system do
   end
 end
 
-RSpec.describe "ログイン".create(:user)
-  before
+RSpec.describe "ログイン", type: :system do
+  before do
     @user = FactoryBot.create(:user)
   end
   context "ログインができるとき" do
@@ -97,7 +97,7 @@ RSpec.describe "ログイン".create(:user)
       # ログインボタンを押す
       find("input[name='commit']").click
       # ログインページへ戻されることを確認する
-      expect(current_path).to eq root_path
+      expect(current_path).to eq(new_user_session_path)
     end
   end
 end
