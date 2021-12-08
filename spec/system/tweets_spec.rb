@@ -47,3 +47,4 @@ RSpec.describe "ツイート投稿", type: :system do
   end
 end
 
+RSpec.describe "ツイート編集", type;
